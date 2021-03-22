@@ -23,6 +23,7 @@ package com.github._1c_syntax.mdclasses.mdo;
 
 import com.github._1c_syntax.mdclasses.mdo.wrapper.DesignerMDO;
 import com.github._1c_syntax.mdclasses.mdo.wrapper.DesignerSynonym;
+import com.github._1c_syntax.mdclasses.mdoreader.MDField;
 import com.github._1c_syntax.mdclasses.metadata.additional.MDOReference;
 import com.github._1c_syntax.mdclasses.metadata.additional.MDOType;
 import com.github._1c_syntax.mdclasses.metadata.additional.ObjectBelonging;
@@ -51,11 +52,13 @@ public class MDObjectBase implements MDOExtensions {
    * уникальный идентификатор объекта
    */
   @XStreamAsAttribute
+  @MDField(nameDesigner = "uuid", isAttributeEDT = true)
   protected String uuid = "";
 
   /**
    * Имя объекта
    */
+  @MDField(nameDesigner = "Name")
   protected String name = "";
 
   /**
@@ -67,6 +70,7 @@ public class MDObjectBase implements MDOExtensions {
    * Синонимы объекта
    */
   @XStreamImplicit(itemFieldName = "synonym")
+  @MDField(nameDesigner = "Synonym")
   protected List<MDOSynonym> synonyms = Collections.emptyList();
 
   /**

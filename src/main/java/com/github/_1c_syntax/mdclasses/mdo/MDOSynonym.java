@@ -21,15 +21,21 @@
  */
 package com.github._1c_syntax.mdclasses.mdo;
 
+import com.github._1c_syntax.mdclasses.mdoreader.MDClass;
+import com.github._1c_syntax.mdclasses.mdoreader.MDField;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@MDClass(nameDesigner = "Synonym")
+
 public class MDOSynonym {
     @XStreamAlias("key")
+    @MDField(nameDesigner = "lang", namespaceDesigner = "http://v8.1c.ru/8.1/data/core")
     private String language;
+    @MDField(nameDesigner = "content", namespaceDesigner = "http://v8.1c.ru/8.1/data/core")
     @XStreamAlias("value")
     private String content;
 }

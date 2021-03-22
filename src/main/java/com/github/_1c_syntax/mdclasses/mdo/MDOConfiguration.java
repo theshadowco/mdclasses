@@ -22,6 +22,7 @@
 package com.github._1c_syntax.mdclasses.mdo;
 
 import com.github._1c_syntax.mdclasses.mdo.wrapper.DesignerMDO;
+import com.github._1c_syntax.mdclasses.mdoreader.MDClass;
 import com.github._1c_syntax.mdclasses.metadata.additional.CompatibilityMode;
 import com.github._1c_syntax.mdclasses.metadata.additional.ConfigurationExtensionPurpose;
 import com.github._1c_syntax.mdclasses.metadata.additional.DataLockControlMode;
@@ -43,6 +44,9 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true, onlyExplicitlyIncluded = true)
 @NoArgsConstructor
+@MDClass(
+  nameDesigner = "Configuration"
+)
 public class MDOConfiguration extends MDObjectBSL {
 
   /**

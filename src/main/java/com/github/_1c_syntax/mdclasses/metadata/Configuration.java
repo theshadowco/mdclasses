@@ -32,6 +32,7 @@ import com.github._1c_syntax.mdclasses.mdo.MDObjectBase;
 import com.github._1c_syntax.mdclasses.mdo.MDObjectComplex;
 import com.github._1c_syntax.mdclasses.mdo.TabularSection;
 import com.github._1c_syntax.mdclasses.mdo.WebService;
+import com.github._1c_syntax.mdclasses.mdoreader.MDFactory;
 import com.github._1c_syntax.mdclasses.metadata.additional.ApplicationRunMode;
 import com.github._1c_syntax.mdclasses.metadata.additional.CompatibilityMode;
 import com.github._1c_syntax.mdclasses.metadata.additional.ConfigurationSource;
@@ -300,6 +301,23 @@ public class Configuration {
     ConfigurationSource configurationSource = MDOUtils.getConfigurationSourceByPath(rootPath);
     if (configurationSource != ConfigurationSource.EMPTY) {
       var configurationMDO = MDOFactory.readMDOConfiguration(configurationSource, rootPath);
+      if (configurationMDO.isPresent()) {
+        MDOConfiguration mdoConfiguration = (MDOConfiguration) configurationMDO.get();
+        if (mdoConfiguration.getObjectBelonging() == ObjectBelonging.ADOPTED) {
+          return new ConfigurationExtension(mdoConfiguration, configurationSource, rootPath);
+        } else {
+          return new Configuration(mdoConfiguration, configurationSource, rootPath);
+        }
+      }
+    }
+
+    return create();
+  }
+
+  public static Configuration create2(Path rootPath) {
+    ConfigurationSource configurationSource = MDOUtils.getConfigurationSourceByPath(rootPath);
+    if (configurationSource != ConfigurationSource.EMPTY) {
+      var configurationMDO = MDFactory.readMDOConfiguration(configurationSource, rootPath);
       if (configurationMDO.isPresent()) {
         MDOConfiguration mdoConfiguration = (MDOConfiguration) configurationMDO.get();
         if (mdoConfiguration.getObjectBelonging() == ObjectBelonging.ADOPTED) {
